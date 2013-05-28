@@ -1,1 +1,1 @@
-Chatrooms test app w/ Node + Express + Backbone
+Very simple chatroom implementation using Node, Express and Backbone 
