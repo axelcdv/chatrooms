@@ -35,6 +35,8 @@ app.get('/partials/:name', routes.partials); // ? TODO
 // JSON API
 
 app.get('/api/chatrooms', api.chatrooms);
+app.get('/api/chatroom/:room_id', api.chatroom);
+app.get('/api/chatroom/:room_id(/f:first)(/n:num_msg)', api.chatroom);
 app.get('*', routes.index);
 
 // Start server
