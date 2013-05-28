@@ -54,7 +54,8 @@ exports.chatroom = function(req, res) {
 		{
 			messages.push({
 				id: i,
-				from: chatroom.messages[i]
+				from: chatroom.messages[i].from,
+				body: chatroom.messages[i].body
 			});
 		}
 		res.json({
@@ -68,4 +69,32 @@ exports.chatroom = function(req, res) {
 	}
 };
 
+// POST
 
+exports.postMessage = function(req, res) {
+	var room_id = req.params.room_id;
+
+	console.log('Posting message in room: ' + room_id
+			+ ", from: " + req.params.from
+			+ ", body: " + req.body);
+
+	if (room_id && room_id >= 0 && room_id < data.chatrooms.length)
+	{
+		var chatroom = data.chatrooms[room_id];
+		chatroom.messages.push({ 
+			from: (req.body.from || ""),
+			body: (req.body.body || "")
+		});
+		var msg_id = chatroom.messages.length - 1;
+		res.json({
+			id: msg_id,
+			from: chatroom.messages[msg_id].from,
+			body: chatroom.messages[msg_id].body
+		});
+	}
+	else
+	{
+		console.log('Incorrect chatroom id');
+		res.json(false);
+	}
+}
