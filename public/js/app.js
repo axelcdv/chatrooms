@@ -5,7 +5,7 @@ var App = new (Backbone.View.extend({
 	Views: {},
     	Models: {},
     	Collections: {},
-    	template: _.template('<h2>Chatrooms here</h2>'),
+    	template: _.template('<h2>Chatrooms here</h2><div id="chatrooms"></div>'),
     	render: function(){
 		this.$el.html( this.template() );
 	},
@@ -17,7 +17,7 @@ var App = new (Backbone.View.extend({
 }))();
 
 $(function(){ 
-	App.render();
+//	App.render();
 	App.start(); 
 //	new App.Views.Chatrooms();
 });

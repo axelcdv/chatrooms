@@ -4,10 +4,16 @@ var App = App || {};
 
 App.Views.Chatroom = Backbone.View.extend({
 	tagName: 'div',
-	template: _.template( '<h3><%= model.name %></h3' ),
+	model: App.Models.Chatroom,
+	template: _.template( '<h3><%= model.attributes.name %></h3' ),
+
+	initialize: function(){
+		console.log(this.model);
+		this.listenTo(this.model, 'change', this.render)
+	},
 
 	render: function(){
-		this.$el.html( this.template( this.model.attributes ) );
+		this.$el.html( this.template( { model: this.model } ) );
 
 		return this;
 	}

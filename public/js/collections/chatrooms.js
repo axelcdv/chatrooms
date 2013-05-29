@@ -7,6 +7,10 @@ App.Collections.Chatrooms = Backbone.Collection.extend({
 	url: '/api/chatrooms',
 
 	initialize: function() {
+		console.log("Fetching");
 		this.fetch();
+		this.forEach(function(chatroom){
+			alert(chatroom.get('name'));
+		});
 	}
 });

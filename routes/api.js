@@ -29,12 +29,12 @@ exports.chatrooms = function(req, res) {
 	data.chatrooms.forEach(function(chatroom, i){
 		chatrooms.push({
 			id: i,
-			room_name: chatroom.room_name
+			name: chatroom.name
 		});
 	});
-	res.json({
-		chatrooms: chatrooms
-	});
+	res.json( 
+			chatrooms
+	);
 };
 
 exports.chatroom = function(req, res) {
