@@ -7,7 +7,7 @@
 var data = {
 	"chatrooms": [
 	{
-		"name": "chatroom 1",
+		"name": "chatroom 0",
 		"messages": [
 		{
 			"from": "Bob",
@@ -16,6 +16,23 @@ var data = {
 		{
 			"from": "John",
 			"body": "Hi Bob!"
+		}
+		]
+	},
+	{
+		"name": "other chatroom",
+		"messages": [
+		{
+			"from": "batman",
+			"body": "I am the night"
+		},
+		{
+			"from": "Joker",
+			"body": "Its simple, we kill the batman"
+		},
+		{
+			"from": "Spiderman",
+			"body": "What the fuck am I doing here?"
 		}
 		]
 	}

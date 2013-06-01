@@ -13,8 +13,8 @@ App.Views.Chatrooms = Backbone.View.extend({
 	
 	addOne: function(chatroom){
 		console.log(chatroom);
-		var chatroomView = new App.Views.Chatroom({ model: chatroom });
-		this.$el.append(chatroomView.render().el);
+		var metaroomView = new App.Views.MetaRoom({ model: chatroom });
+		this.$el.append(metaroomView.render().el);
 	}
 });
 
