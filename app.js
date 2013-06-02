@@ -36,7 +36,10 @@ app.get('/partials/:name', routes.partials); // ? TODO
 
 app.get('/api/chatrooms', api.chatrooms);
 app.get('/api/chatroom/:room_id', api.chatroom);
-app.get('/api/chatroom/:room_id(/f:first)(/n:num_msg)', api.chatroom);
+
+app.get('/api/chatroom/:room_id/f:first/n:num_msg', api.chatroom);
+
+app.post('/api/chatroom/:room_id', api.postMessage);
 app.get('*', routes.index);
 
 // Start server
@@ -46,4 +49,5 @@ app.listen(3000, function(){
 	console.log('Express server listening on port %d in %s mode', 
 		this.address().port,
 		app.settings.env);
+//	console.log(app.routes);
 });
