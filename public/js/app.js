@@ -12,7 +12,7 @@ var App = new (Backbone.View.extend({
     	initialize: function() {
 	},
     	start: function(){
-		Backbone.history.start({pushState: true});
+//		Backbone.history.start({pushState: true});
 	}
 }))();
 

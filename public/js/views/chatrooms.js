@@ -15,9 +15,15 @@ App.Views.Chatrooms = Backbone.View.extend({
 		console.log(chatroom);
 		var metaroomView = new App.Views.MetaRoom({ model: chatroom });
 		this.$el.append(metaroomView.render().el);
+	},
+
+	destroy: function(){
+		console.log("Destroying chatrooms view");
+		this.trigger('destroy');
 	}
+
 });
 
-App.Views.chatrooms = new App.Views.Chatrooms({ el: $('#chatrooms') });
+//App.Views.chatrooms = new App.Views.Chatrooms({ el: $('#chatrooms') });
 //App.Views.chatrooms.render();
-console.log('done with Chatrooms: ' + App.Views.chatrooms.el);
+//console.log('done with Chatrooms: ' + App.Views.chatrooms.el);

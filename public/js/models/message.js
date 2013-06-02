@@ -3,8 +3,10 @@
 var App = App || {};
 
 App.Models.Message = Backbone.Model.extend({
-	default: {
+	defaults: {
 		from: '',
 		body: ''
+	},
+	initialize: function(){
 	}
 });
