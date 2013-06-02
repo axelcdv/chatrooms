@@ -15,7 +15,8 @@ App.Views.Chatroom = Backbone.View.extend({
 	initialize: function(options){
 		console.log(options.room_id);
 		this.collection = new App.Collections.Chatroom({ url: '/api/chatroom/' + options.room_id, room_id: options.room_id });
-		this.listenTo(this.collection, 'all', this.render);
+		this.listenTo(this.collection, 'reset', this.render);
+		this.listenTo(this.collection, 'add', this.addOne);
 	},
 
 	render: function(){
