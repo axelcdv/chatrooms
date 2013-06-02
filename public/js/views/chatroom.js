@@ -5,23 +5,22 @@ var App = App || {};
 App.Views.Chatroom = Backbone.View.extend({
 	tagName: 'div',
 	collection: App.Collections.Chatroom,
-	template: _.template( '<h3><%= model.attributes.name %></h3' ),
+	template: _.template( '<h3><%= room_name %></h3>'
+	       + '<form><input name=body type="text" /><button>Send</button></form>'	),
 
 	events: {
-		'click a': 'gotochat'
+		'submit': 'sendMessage'
 	},
 
 	initialize: function(options){
 		console.log(options.room_id);
-		this.collection = new App.Collections.Chatroom({ url: '/api/chatroom/' + options.room_id });
+		this.collection = new App.Collections.Chatroom({ url: '/api/chatroom/' + options.room_id, room_id: options.room_id });
 		this.listenTo(this.collection, 'all', this.render);
-//		console.log(this.model);
-//		this.listenTo(this.model, 'change', this.render);
 	},
 
 	render: function(){
-//		this.$el.html( this.template( { model: this.model } ) );
-		this.$el.empty();
+		this.$el.html(this.template( { room_name: this.collection.room_name } ));
+
 		this.collection.forEach(this.addOne, this);
 		return this;
 	},
@@ -31,10 +30,13 @@ App.Views.Chatroom = Backbone.View.extend({
 		this.$el.append(messageView.render().el);
 	},
 
-	gotochat: function(e) {
+	sendMessage: function(e) {
 		e.preventDefault();
-		// TODO go to chatroom
-		console.log('Going to chatroom ' + this.model.attributes.id);
+		console.log('Saving message from me with body: ' + this.$('input[name=body]').val() + ' to: room id: ' + this.collection.room_id);
+		var newMessage = new App.Models.Message({ 'url': '/api/chatroom/' + this.collection.room_id });
+		newMessage.url = '/api/chatroom/' + this.collection.room_id;
+		newMessage.save({ 'from': 'me', 'body': this.$('input[name=body]').val() });
+		this.collection.fetch();
 	}
 
 });

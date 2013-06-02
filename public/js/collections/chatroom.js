@@ -9,6 +9,7 @@ App.Collections.Chatroom = Backbone.Collection.extend({
 	initialize: function(options){
 		console.log(options);
 		this.url = options.url;
+		this.room_id = options.room_id;
 		console.log('Chatroom, url: ' + this.url);
 		this.fetch();
 	},
