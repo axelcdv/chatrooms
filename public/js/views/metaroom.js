@@ -5,13 +5,16 @@ define([
 	'underscore',
 	'backbone',
 	'models/metaroom',
-	'events'
+	'events',
+	'text!../templates/metaroom.html'
 	],
-	function($, _, Backbone, MetaroomModel, Events)
+	function($, _, Backbone, MetaroomModel, Events, MetaroomTemplate)
 	{
 			var MetaroomView = Backbone.View.extend({
 					model: MetaroomModel,
-					template: _.template('<h3><a href="/chatroom/<%= id %>"><%= name %></a></h3>'),
+					className: 'ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-first-child ui-last-child ui-btn-up-c',
+//					template: _.template('<h3><a href="/chatroom/<%= id %>"><%= name %></a></h3>'),
+					template: _.template(MetaroomTemplate),
 
 					events: {
 							'push a': 'gotochat',
@@ -20,6 +23,13 @@ define([
 
 					render: function() {
 							this.$el.html( this.template( this.model.attributes ) );
+							this.$el.attr('data-theme', 'c')
+								.attr('data-corners', 'false')
+								.attr('data-shadow', 'false')
+								.attr('data-iconshadow', 'true')
+								.attr('data-wrapperels', 'div')
+								.attr('data-icon', 'arrow-r')
+								.attr('data-iconpos', 'right');
 							return this;
 					},
 					

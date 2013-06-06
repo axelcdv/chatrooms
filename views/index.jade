@@ -1,6 +1,7 @@
 extends layout
 
 block body
-  #chatroomapp 
-    h2 Chatrooms
-    #chatrooms
+  div.ui-page.ui-body-c.ui-page-header-fixed.ui-page-footer-fixed.ui-page-active(data-role="page")
+    div.ui-header.ui-bar-a.ui-header-fixed.slidedown(data-theme="a", data-role="header", data-position="fixed", role="banner")
+      h3.ui-title(role="heading", aria-level="1") Header
+    #chatroomapp(data-role="content", class="ui-content", role="main") 
