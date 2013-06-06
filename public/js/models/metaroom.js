@@ -1,13 +1,16 @@
-// js/models/chatroom.js
-//
+// js/models/metaroom.js
 
-var App = App || {};
+define([
+	'jquery',
+	'backbone',
+	],
+	function() {
+			var MetaroomModel = Backbone.Model.extend({
+					defaults: {
+							id: 0
+					}
+			});
 
-App.Models.MetaRoom = Backbone.Model.extend({
-	defaults: {
-		id: 0
-	},
-
-	initialize: function(){
+			return MetaroomModel;
 	}
-});
+);
