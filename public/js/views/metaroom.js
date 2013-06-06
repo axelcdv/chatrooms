@@ -1,24 +1,38 @@
 // js/views/metaroom.js
 
-App.Views.MetaRoom = Backbone.View.extend({
-	model: App.Models.MetaRoom,
-	template: _.template('<h3><a href="/chatroom/<%= id %>"><%= name %></a></h3>'),
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'models/metaroom',
+	'events'
+	],
+	function($, _, Backbone, MetaroomModel, Events)
+	{
+			var MetaroomView = Backbone.View.extend({
+					model: MetaroomModel,
+					template: _.template('<h3><a href="/chatroom/<%= id %>"><%= name %></a></h3>'),
 
-	events: {
-		'click a': 'gotochat'
-	},
+					events: {
+							'push a': 'gotochat',
+							'click a': 'gotochat'
+					},
 
-	render: function(){
-		this.$el.html( this.template( this.model.attributes ) );
-		return this;
-	},
+					render: function() {
+							this.$el.html( this.template( this.model.attributes ) );
+							return this;
+					},
+					
+					gotochat: function(e) {
+							e.preventDefault();
+							console.log('Going to chatroom '
+									+ this.model.attributes.name + " id: "
+									+ this.model.attributes.id);
+							Events.trigger('navigate', '/chatroom/' + this.model.attributes.id);
+					}
+			});
 
-	gotochat: function(e){
-		e.preventDefault();
-		// TODO go to chatroom
-		console.log('Going to chatroom %s (%d)', 
-			this.model.attributes.name,
-			this.model.attributes.id);
-		App.router.navigate('chatroom/' + this.model.attributes.id, { trigger: true });
+			return MetaroomView;
 	}
-});
+);
+

@@ -1,16 +1,21 @@
 // js/collections/chatrooms.js
 
-var App = App || {};
+define([
+	'jquery',
+	'backbone',
+	'models/metaroom'
+	],
+	function($, Backbone, MetaroomModel) {
+			var ChatroomsCollection = Backbone.Collection.extend({
+					model: MetaroomModel,
+					url: 'http://localhost:3000/api/chatrooms', // TODO
+					initialize: function () {
+						console.log("Fetching");
+						this.fetch({ reset: true });
+					}
+			});
 
-App.Collections.Chatrooms = Backbone.Collection.extend({
-	model: App.Models.MetaRoom,
-	url: '/api/chatrooms',
-
-	initialize: function() {
-		console.log("Fetching");
-		this.fetch();
-		this.forEach(function(chatroom){
-			alert(chatroom.get('name'));
-		});
+			return ChatroomsCollection;
 	}
-});
+);
+
