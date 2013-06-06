@@ -10,6 +10,9 @@ define([
 					defaults: {
 							from: "",
 							body: ""
+					},
+					initialize: function(options) {
+							this.url = options.url || "";
 					}
 			});
 
