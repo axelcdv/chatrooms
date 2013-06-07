@@ -3,16 +3,17 @@
 define([
 	'jquery',
 	'backbone',
-	'models/message'
+	'models/message',
+	'api'
 	],
-	function($, Backbone, MessageModel)
+	function($, Backbone, MessageModel, Api)
 	{
 			var ChatroomCollection = Backbone.Collection.extend({
 					model: MessageModel,
 					// URL here
 					initialize: function(options) {
 							this.id = options.id || 0;
-							this.url = "http://localhost:3000/api/chatroom/" + this.id;
+							this.url = Api.baseUrl + "/api/chatroom/" + this.id;
 							this.fetch({ reset: true });
 					},
 					parse: function(response){

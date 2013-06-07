@@ -3,12 +3,13 @@
 define([
 	'jquery',
 	'backbone',
-	'models/metaroom'
+	'models/metaroom',
+	'api'
 	],
-	function($, Backbone, MetaroomModel) {
+	function($, Backbone, MetaroomModel, Api) {
 			var ChatroomsCollection = Backbone.Collection.extend({
 					model: MetaroomModel,
-					url: 'http://localhost:3000/api/chatrooms', // TODO
+					url: Api.baseUrl + '/api/chatrooms', // TODO
 					initialize: function () {
 						console.log("Fetching");
 						this.fetch({ reset: true });

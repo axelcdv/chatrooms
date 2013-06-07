@@ -7,12 +7,12 @@ define([
 		'collections/chatroom',
 		'views/message',
 		'models/message',
-		'text!templates/chatroom.html'
+		'text!templates/chatroom.html',
+		'api'
 	],
-	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate) {
+	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Api) {
 		var ChatroomView = Backbone.View.extend({
 			el: '.ui-content',//'.curView',
-//			template: _.template('<p>This is the chatroom view for chatroom: <%= id %></p>'),
 			template: _.template(ChatroomTemplate),
 			events: {
 					'submit': 'sendMessage',
@@ -34,7 +34,7 @@ define([
 			},
 			sendMessage: function(e) {
 					e.preventDefault();
-					var newMessage = new MessageModel({ 'url': 'http://localhost:3000/api/chatroom/' + this.collection.id });
+					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
 					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
 				   this.collection.fetch();
 			}	   
