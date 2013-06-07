@@ -12,7 +12,7 @@ define([
 	],
 	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Api) {
 		var ChatroomView = Backbone.View.extend({
-			el: '.ui-content',//'.curView',
+			//el: '.ui-content',//'.curView',
 			template: _.template(ChatroomTemplate),
 			events: {
 					'submit': 'sendMessage',
@@ -22,6 +22,7 @@ define([
 					this.collection = new ChatroomCollection({ id: options.id });
 					this.collection.on('reset', this.render, this);
 					this.collection.on('add', this.addOne, this);
+					this.el = options.el || '.ui-content';
 			},
 			render: function() {
 					this.$el.html( this.template( { id: this.collection.id } ) );
@@ -37,7 +38,10 @@ define([
 					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
 					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
 				   this.collection.fetch();
-			}	   
+			},
+		 	clean: function() {
+					this.collection.off(null, null, this);
+			}	
 		});
 
 		return ChatroomView;

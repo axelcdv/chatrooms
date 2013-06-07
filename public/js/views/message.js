@@ -20,6 +20,9 @@ define([
 							this.$el.attr('data-role', 'list-divider')
 								.attr('role', 'heading');
 							return this;
+					},
+
+					clean: function(){
 					}
 			});
 

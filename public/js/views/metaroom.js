@@ -39,6 +39,9 @@ define([
 									+ this.model.attributes.name + " id: "
 									+ this.model.attributes.id);
 							Events.trigger('navigate', '/chatroom/' + this.model.attributes.id);
+					},
+
+					clean: function() {
 					}
 			});
 

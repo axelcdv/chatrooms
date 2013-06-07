@@ -8,16 +8,17 @@ define([
 	],
 	function($, _, Backbone, ChatroomsCollection, MetaroomView, ChatroomsTemplate) {
 		var ChatroomsView = Backbone.View.extend({
-			el: '.ui-content', //'.curView',
+//			el: '.ui-content', //'.curView',
 //			template: _.template('<h3>This is the chatroom index, listing all the chatrooms</h3>'),
 			template: _.template(ChatroomsTemplate),
-			initialize: function() {
+			initialize: function(options) {
 					this.collection = new ChatroomsCollection();
 					console.log(this);
 //					this.listenTo(this.collection, 'reset', this.render);
 //					this.listenTo(this.collection, 'add', this.addOne);
 					this.collection.on('add', this.addOne, this);
 					this.collection.on('reset', this.render, this);
+					this.el = options.el || '.ui-content';
 			},
 			render: function() {
 				this.$el.html( this.template() );
@@ -34,6 +35,9 @@ define([
 			},
 			destroy: function(){
 					console.log('Destroying chatrooms view'); //TODO
+			},
+			clean: function(){
+					this.collection.off(null, null, this);
 			}
 		});
 
