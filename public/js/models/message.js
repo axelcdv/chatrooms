@@ -1,12 +1,21 @@
 // js/models/message.js
 
-var App = App || {};
+define([
+	'jquery',
+	'backbone'
+	],
+	function($, Backbone)
+	{
+			var MessageModel = Backbone.Model.extend({
+					defaults: {
+							from: "",
+							body: ""
+					},
+					initialize: function(options) {
+							this.url = options.url || "";
+					}
+			});
 
-App.Models.Message = Backbone.Model.extend({
-	defaults: {
-		from: '',
-		body: ''
-	},
-	initialize: function(){
+			return MessageModel;
 	}
-});
+);

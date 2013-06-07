@@ -1,20 +1,7 @@
 extends layout
 
 block body
-  #chatroomapp 
-    h2 Chatrooms
-    #chatrooms
-
-  script(src='js/lib/jquery.min.js')
-  script(src='js/lib/underscore-min.js')
-  script(src='js/lib/backbone-min.js')
-  script(src='js/app.js')
-  script(src='js/models/message.js')
-  script(src='js/views/message.js')
-  script(src='js/models/metaroom.js')
-  script(src='js/views/metaroom.js')
-  script(src='js/collections/chatroom.js')
-  script(src='js/collections/chatrooms.js')
-  script(src='js/views/chatroom.js')
-  script(src='js/views/chatrooms.js')
-  script(src='js/router.js')
+  div.ui-page.ui-body-c.ui-page-header-fixed.ui-page-footer-fixed.ui-page-active(data-role="page")
+    div.ui-header.ui-bar-a.ui-header-fixed.slidedown(data-theme="a", data-role="header", data-position="fixed", role="banner")
+      h3.ui-title(role="heading", aria-level="1") Header
+    #chatroomapp(data-role="content", class="ui-content", role="main") 

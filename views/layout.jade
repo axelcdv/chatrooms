@@ -1,9 +1,10 @@
 !!!
-html()
+html(class="ui-mobile")
   head
     meta(charset='utf8')
     base(href='/')
     title Chatrooms
-    link(rel='stylesheet', href='/css/app.css')
-  body
+    link(rel='stylesheet', href='/css/jquery.mobile.min.css')
+    script(data-main='js/main', src='js/libs/require/require.js')
+  body(class="ui-mobile-viewport ui-overlay-c")
     block body
