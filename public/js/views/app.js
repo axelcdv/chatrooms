@@ -5,15 +5,27 @@ define([
 		'underscore',
 		'backbone',
 		'cordova',
-		'router'
+		'router',
+		'events',
+		'text!templates/header.html',
+		'text!templates/main.html'
 		],
-	function ($, _, Backbone, cordova, Router) {
+	function ($, _, Backbone, cordova, Router, Events, HeaderTemplate, ContentTemplate) {
 		var AppView = Backbone.View.extend({
-			el: $('#chatroomapp'),
-			template: _.template('<h2>Chatroom app here</h2>'
-				+'<div class="curView"></div>'),
+			el: $('[data-role="page"]'),
+			events: {
+					'click [data-role="header"]': 'gotoindex' // TODO touch events
+			},
+			headerTemplate: _.template(HeaderTemplate),
+		    contentTemplate: _.template(ContentTemplate),
 			render: function() {
-				this.$el.html( this.template() );
+				this.$el.html( this.headerTemplate( { 'headertitle' : "Chatrooms" } ) );
+				this.$el.append( this.contentTemplate() );
+			},
+			
+			gotoindex: function(e) {
+					e.preventDefault();
+					Events.trigger('navigate', '/');
 			}
 		});
 

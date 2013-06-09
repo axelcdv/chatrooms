@@ -30,7 +30,7 @@ app.configure('production', function(){
 // Routes
 
 app.get('/', routes.index); // TODO
-app.get('/partials/:name', routes.partials); // ? TODO
+//app.get('/partials/:name', routes.partials); // ? TODO
 
 // JSON API
 
