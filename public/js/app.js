@@ -27,8 +27,3 @@ define([
 
 });
 
-//$(function(){ 
-////	App.render();
-//	App.start(); 
-////	new App.Views.Chatrooms();
-//});
