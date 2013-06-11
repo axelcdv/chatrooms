@@ -11,14 +11,15 @@ define([
 	{
 			var MessageView = Backbone.View.extend({
 					model: MessageModel,
-					tagName: 'li',
+					className: "span10 msg-row msg-left",
+//					tagName: 'li',
 //					template: _.template('<span class="from"><%= from %></span></br>'
 //							+ '<span class="messageBody"><%= body %></span>'),
 					template: _.template(MessageTemplate),
 					render: function (){
 							this.$el.html( this.template( this.model.attributes ) );
-							this.$el.attr('data-role', 'list-divider')
-								.attr('role', 'heading');
+//							this.$el.attr('data-role', 'list-divider')
+//								.attr('role', 'heading');
 							return this;
 					},
 
