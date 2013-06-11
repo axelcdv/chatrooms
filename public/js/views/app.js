@@ -13,6 +13,7 @@ define([
 	function ($, _, Backbone, cordova, Router, Events, HeaderTemplate, ContentTemplate) {
 		var AppView = Backbone.View.extend({
 			el: $('[data-role="page"]'),
+//			el: $('body'),
 			events: {
 					'click [data-role="header"]': 'gotoindex' // TODO touch events
 			},
