@@ -1,0 +1,95 @@
+body {
+		font-family: 'Titillium Web', sans-serif;
+}
+
+.header {
+		background: #ffb400;
+		height: 12%;
+		position: fixed;
+		top: 0;
+		right: 0;
+		left: 0;
+}
+
+.header-btn {
+		display: inline-block;
+		cursor: hand;
+		cursor: pointer;
+		width: 10%;
+		height: 100%;
+}
+
+.back-btn {
+		background: #ffb400 url('back-icon.png') no-repeat center center;
+		background-size: 30%;
+		float: left;
+}
+
+.people-btn {
+		background: #ffb400 url('people-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: right;
+}
+
+.vr {
+		border-right: 1px solid #e98900;
+		display: inline-block;
+		height: 100%;
+}
+
+.pull-left {
+		float: left;
+}
+
+.pull-right {
+		float: right;
+}
+
+.header-title {
+		height: 100%;
+		padding: 0px;
+		text-align: center;
+		position: relative;
+}
+
+.header-title-inner {
+}
+
+.header-title h3 {
+		color: white;
+}
+
+.footer {
+		background: #ffb400;
+		height: 12%;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+		left: 0;
+}
+
+.photo-btn {
+		background: #373737 url('photo-icon.png') center center;
+		background-size: 100%;
+		background-repeat: no-repeat;
+		float: left;
+}
+
+.send-btn {
+		float: right;
+		text-align: center;
+}
+
+.send-btn h3 {
+		display: inline-block;
+		margin-top: 10%;
+		color: white;
+}
+
+textarea#msg-body {
+		width: 80%;
+		resize: none;
+		margin: 0;
+		height: 100%;
+		border: solid 1px black;
+}
