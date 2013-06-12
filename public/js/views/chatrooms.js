@@ -20,6 +20,7 @@ define([
 					this.el = options.el || '.ui-content';
 			},
 			render: function() {
+					console.log("Rendering chatrooms view...");
 				this.$el.html( this.template() );
 				Events.trigger('changeheader', {
 						header: {
