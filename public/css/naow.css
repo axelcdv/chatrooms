@@ -79,13 +79,18 @@ div#chatroomapp {
 		padding: 0px;
 		text-align: center;
 		position: relative;
+		display: table;
 }
 
 .header-title-inner {
+		display: table-cell;
+		vertical-align: middle;
+		margin: 0;
 }
 
 .header-title h3 {
 		color: white;
+		margin: 5px 0 5px 0;
 }
 
 /**************
@@ -211,7 +216,7 @@ h4.msg-from {
 		background-color: #3dd2f9;
 }
 
-.meta-room div {
+.meta-room-inner div {
 		display: inline-block;
 }
 

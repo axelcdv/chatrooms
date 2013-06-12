@@ -38,7 +38,7 @@ define([
 					router.navigate(path, { trigger: true });
 			});
 
-			Backbone.history.start();
+			Backbone.history.start({ pushState: false });
 		};
 
 
