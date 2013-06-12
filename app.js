@@ -38,6 +38,7 @@ app.get('/api/chatrooms', api.chatrooms);
 app.get('/api/chatroom/:room_id', api.chatroom);
 
 app.get('/api/chatroom/:room_id/f:first/n:num_msg', api.chatroom);
+app.get('/api/chatroom/:room_id/t:timestamp', api.chatroomWithTime);
 
 app.post('/api/chatroom/:room_id', api.postMessage);
 app.get('*', routes.index);
