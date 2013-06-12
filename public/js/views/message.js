@@ -18,9 +18,6 @@ define([
 //							+ '<span class="messageBody"><%= body %></span>'),
 					template: _.template(MessageTemplate),
 					render: function (){
-							console.log("Rendering message, model attributes: "
-									+ this.model.attributes.from);
-							console.log(this.model.attributes);
 							if ( this.model.attributes.from === "me" ) { // Temporary
 									this.className = "message-right";
 									this.$el.removeClass('message-left')

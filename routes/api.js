@@ -51,7 +51,8 @@ exports.chatrooms = function(req, res) {
 	data.chatrooms.forEach(function(chatroom, i){
 		chatrooms.push({
 			id: i,
-			name: chatroom.name
+			name: chatroom.name,
+			num_msgs: chatroom.messages.length
 		});
 	});
 	res.json( 
@@ -59,12 +60,15 @@ exports.chatrooms = function(req, res) {
 	);
 };
 
+// Changing: "first" doesn't make sense, should be some sort of "last" coming back from the end
+// of the message list
 exports.chatroom = function(req, res) {
 	var messages = [];
 	var first = req.params.first;
 	var num_msg = req.params.num_msg || 30; // Return 30 messages by default
 	var room_id = req.params.room_id;
-	
+	var max_timestamp = 0;
+
 	console.log('Asking for chatroom: ' + room_id 
 			+ ", first: " + first 
 			+ ", num_msg: " + num_msg);
@@ -75,15 +79,20 @@ exports.chatroom = function(req, res) {
 		console.log('Replying with chatroom: ' + chatroom.name + ', num msgs: ' + chatroom.messages.length);
 		for (var i = first; i < first + num_msg && i < chatroom.messages.length; i++)
 		{
+			var message = chatroom.messages[i];
 			messages.push({
 				id: i,
-				from: chatroom.messages[i].from,
-				body: chatroom.messages[i].body,
-				timestamp: chatroom.messages[i].timestamp
+				from: message.from,
+				body: message.body,
+				timestamp: message.timestamp
 			});
+			if (message.timestamp > max_timestamp) {
+					max_timestamp = message.timestamp;
+			}
 		}
 		res.json({
 			room_name: chatroom.name,
+			timestamp: max_timestamp,
 			messages: messages
 		});
 	}
@@ -104,6 +113,7 @@ exports.chatroomWithTime = function(req, res) {
 		var i = 0;
 		var chatroom = data.chatrooms[room_id];
 		var message;
+		var max_timestamp = 0;
 		for (i = 0; i < chatroom.messages.length; i++)
 		{
 			message = chatroom.messages[i];	
@@ -115,10 +125,15 @@ exports.chatroomWithTime = function(req, res) {
 							timestamp: message.timestamp
 					});
 			}
+			if (message.timestamp > max_timestamp) {
+					max_timestamp = message.timestamp;
+			}
+
 		}
 		res.json({
 				room_name: chatroom.name,
 				num_msgs: chatroom.messages.length,
+				timestamp: max_timestamp,
 				messages: messages
 		});
 }
