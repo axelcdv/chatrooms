@@ -1,12 +1,13 @@
-<!--<div class="ui-btn-inner ui-li">
-		<div class="ui-btn-text">
-				<a href="#" data-transition="slide" class="ui-link-inherit">
-						<%= name %>
-				</a>
-		</div>
-		<span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
-</div> -->
-
-<div class="span8 offset2 room-row">
-	<h4><a href="#"><%= name %></a></h4>
+<!-- metaroom template, to be put in a div.meta-room -->
+<div class="meta-room-inner">
+<div class="room-pic pull-left">
+		<img src="<%= room_pic %>" />
+</div>
+<div class="room-go pull-right">
+		<img src="img/join-conv-icon.png" />
+</div>
+<div class="room-desc">
+		<h4 class="room-title"><%= name %></h4>
+		<p class="room-content"><%= num_people %> people, <%= num_msgs %> messages</p>
+</div>
 </div>

@@ -56,8 +56,8 @@ exports.chatrooms = function(req, res) {
 
 exports.chatroom = function(req, res) {
 	var messages = [];
-	var first = req.params.first || 0;
-	var num_msg = req.params.num_msg || 10; // Return 10 messages by default
+	var first = req.params.first;
+	var num_msg = req.params.num_msg || 30; // Return 30 messages by default
 	var room_id = req.params.room_id;
 	
 	console.log('Asking for chatroom: ' + room_id 
@@ -66,6 +66,7 @@ exports.chatroom = function(req, res) {
 	if(room_id && room_id >= 0 && room_id < data.chatrooms.length)
 	{
 		var chatroom = data.chatrooms[room_id];
+		first = first || ((num_msg < chatroom.messages.length) ? chatroom.messages.length - num_msg - 1 : 0);
 		console.log('Replying with chatroom: ' + chatroom.name + ', num msgs: ' + chatroom.messages.length);
 		for (var i = first; i < first + num_msg && i < chatroom.messages.length; i++)
 		{

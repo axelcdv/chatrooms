@@ -14,6 +14,7 @@ define([
 					model: MetaroomModel,
 //					className: 'ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-first-child ui-last-child ui-btn-up-c',
 //					className: 'span8 offset2 room-row',
+					className: 'meta-room',
 					template: _.template(MetaroomTemplate),
 
 					events: {

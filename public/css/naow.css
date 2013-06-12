@@ -16,6 +16,10 @@ body {
 		visibility: hidden;
 }
 
+div#chatroomapp {
+		padding: 0.5% 5% 0.5% 5%;
+}
+
 /*************
  * HEADER
  * **********/
@@ -39,13 +43,25 @@ body {
 }
 
 .back-btn {
-		background: #ffb400 url('back-icon.png') no-repeat center center;
+		background: #ffb400 url('../img/back-icon.png') no-repeat center center;
 		background-size: 30%;
 		float: left;
 }
 
 .people-btn {
-		background: #ffb400 url('people-icon.png') no-repeat center center;
+		background: #ffb400 url('../img/people-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: right;
+}
+
+.plus-btn {
+		background: #ffb400 url('../img/plus-icon.png') no-repeat center center;
+		background-size: 50%;
+		float: left;
+}
+
+.settings-btn {
+		background: #ffb400 url('../img/settings-icon.png') no-repeat center center;
 		background-size: 50%;
 		float: right;
 }
@@ -58,16 +74,23 @@ body {
 
 .header-title {
 		height: 100%;
+		width: 79%;
+		float: left;
 		padding: 0px;
 		text-align: center;
 		position: relative;
+		display: table;
 }
 
 .header-title-inner {
+		display: table-cell;
+		vertical-align: middle;
+		margin: 0;
 }
 
 .header-title h3 {
 		color: white;
+		margin: 5px 0 5px 0;
 }
 
 /**************
@@ -84,7 +107,7 @@ body {
 }
 
 .photo-btn {
-		background: #373737 url('photo-icon.png') center center;
+		background: #373737 url('../img/photo-icon.png') center center;
 		background-size: 100%;
 		background-repeat: no-repeat;
 		float: left;
@@ -102,7 +125,7 @@ body {
 }
 
 textarea#msg-body {
-		width: 80%;
+		width: 79%;
 		resize: none;
 		margin: 0;
 		height: 100%;
@@ -118,11 +141,12 @@ textarea#msg-body {
 
 
 .messages {
-		padding: 10% 5% 10% 5%;
+		/*padding: 10% 5% 10% 5%;*/
 }
 
 .message-right, .message-left {
 		margin: 1px 0 1px 0;
+		overflow: hidden;
 }
 
 .message-right {
@@ -172,4 +196,43 @@ h4.msg-from {
 		width: 50px;
 		height: 50px;
 		border-radius: 25px;
+}
+
+/**************
+ * CHATROOMS
+ * ***********/
+
+.rooms {
+		/*padding: 10% 5% 10% 5%;*/
+}
+
+.meta-room {
+		background-color: #def5fb;
+		overflow: hidden;
+		margin: 2px 0 2px 0;
+}
+
+.meta-room:hover {
+		background-color: #3dd2f9;
+}
+
+.meta-room-inner div {
+		display: inline-block;
+}
+
+.room-pic, .room-go {
+		margin: 0.5em;
+}
+
+.room-pic, .room-go img {
+		border: solid 1px black;
+}
+
+.room-go {
+		cursor: hand;
+		cursor: pointer;
+}
+
+.room-desc h4, p {
+		margin: 0.5em 0 0.5em 0;
 }
