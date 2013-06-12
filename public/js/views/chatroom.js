@@ -16,6 +16,7 @@ define([
 			template: _.template(ChatroomTemplate),
 			events: {
 					'submit': 'sendMessage',
+					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
 					'keypress textarea[type=text]': 'submitOnEnter'
 			},

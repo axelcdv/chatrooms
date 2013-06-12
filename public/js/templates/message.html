@@ -1,17 +1,11 @@
-<!-- Message view template -->
-<!--
-<span class="from-name">From: <b><%= from %></b></span>
-<p class="message-body"><%= body %></p>
--->
+<!-- message template, to be put inside a div.message-left or div.message-right -->
 
-<!--<div class="span6 offset2 room-row msg-left"> -->
-		<div class="media">
-				<a class="" href="#">
-						<img class="media-object img-rounded" src="img/pic.jpg">
-				</a>
-				<div class="media-body">
-						<h5 class="media-heading"><%= from %></h5>
-						<p class="message-body"><%= body %></p>
-				</div>
-		</div>
-		<!-- </div> -->
+<div class="msg-pic">
+		<img src=<%= profile_pic %> class="profile-pic" />
+</div>
+<div class="msg-content">
+		<h4 class="msg-from"><%= from %></h4>
+		<p class="msg-body">
+		<%= body %>
+		</p>
+</div>

@@ -11,7 +11,8 @@ define([
 	{
 			var MessageView = Backbone.View.extend({
 					model: MessageModel,
-					className: "span10 msg-row msg-left",
+//					className: "span10 msg-row msg-left",
+					className: "message-left",
 //					tagName: 'li',
 //					template: _.template('<span class="from"><%= from %></span></br>'
 //							+ '<span class="messageBody"><%= body %></span>'),

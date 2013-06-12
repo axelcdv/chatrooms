@@ -17,10 +17,17 @@ define([
 			events: {
 					'click [data-role="header"]': 'gotoindex' // TODO touch events
 			},
+			attributes: {
+					header: {
+						header_title: 'Chatrooms',
+						right_button_class: 'back-btn',
+						left_button_class: 'people-btn'
+					}
+			},
 			headerTemplate: _.template(HeaderTemplate),
 		    contentTemplate: _.template(ContentTemplate),
 			render: function() {
-				this.$el.html( this.headerTemplate( { 'headertitle' : "Chatrooms" } ) );
+				this.$el.html( this.headerTemplate( this.attributes.header ) );
 				this.$el.append( this.contentTemplate() );
 			},
 			
