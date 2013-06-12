@@ -121,6 +121,10 @@ textarea#msg-body {
 		padding: 10% 5% 10% 5%;
 }
 
+.message-right, .message-left {
+		margin: 1px 0 1px 0;
+}
+
 .message-right {
 		overflow: hidden;
 }
