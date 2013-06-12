@@ -16,10 +16,6 @@ body {
 		visibility: hidden;
 }
 
-div#chatroomapp {
-		padding: 0.5% 5% 0.5% 5%;
-}
-
 /*************
  * HEADER
  * **********/
@@ -54,18 +50,6 @@ div#chatroomapp {
 		float: right;
 }
 
-.plus-btn {
-		background: #ffb400 url('../img/plus-icon.png') no-repeat center center;
-		background-size: 50%;
-		float: left;
-}
-
-.settings-btn {
-		background: #ffb400 url('../img/settings-icon.png') no-repeat center center;
-		background-size: 50%;
-		float: right;
-}
-
 .vr {
 		border-right: 1px solid #e98900;
 		display: inline-block;
@@ -74,8 +58,6 @@ div#chatroomapp {
 
 .header-title {
 		height: 100%;
-		width: 79%;
-		float: left;
 		padding: 0px;
 		text-align: center;
 		position: relative;
@@ -136,7 +118,7 @@ textarea#msg-body {
 
 
 .messages {
-		/*padding: 10% 5% 10% 5%;*/
+		padding: 10% 5% 10% 5%;
 }
 
 .message-right, .message-left {
@@ -198,7 +180,7 @@ h4.msg-from {
  * ***********/
 
 .rooms {
-		/*padding: 10% 5% 10% 5%;*/
+		padding: 10% 5% 10% 5%;
 }
 
 .meta-room {

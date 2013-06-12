@@ -8,9 +8,10 @@ define([
 		'views/message',
 		'models/message',
 		'text!templates/chatroom.html',
+		'events',
 		'api'
 	],
-	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Api) {
+	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Events, Api) {
 		var ChatroomView = Backbone.View.extend({
 			//el: '.ui-content',//'.curView',
 			template: _.template(ChatroomTemplate),
@@ -18,7 +19,7 @@ define([
 					'submit': 'sendMessage',
 					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
-					'keypress textarea[type=text]': 'submitOnEnter'
+					'keypress textarea[type=text]': 'submitOnEnter',
 			},
 			initialize: function(options) {
 					this.collection = new ChatroomCollection({ id: options.id });
@@ -28,6 +29,13 @@ define([
 			},
 			render: function() {
 					console.log("Rendering chatroom");
+					Events.trigger('changeheader', {
+							header: {
+									header_title: this.collection.room_name,
+									right_button_class: 'back-btn',
+									left_button_class: 'people-btn'
+							}
+					});
 					this.$el.html( this.template( { id: this.collection.id } ) );
 					this.collection.forEach(this.addOne, this);
 					return this;

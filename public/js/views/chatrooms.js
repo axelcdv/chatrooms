@@ -4,12 +4,11 @@ define([
 		'backbone',
 		'collections/chatrooms',
 		'views/metaroom',
-		'text!templates/chatrooms.html'
+		'text!templates/chatrooms.html',
+		'events'
 	],
-	function($, _, Backbone, ChatroomsCollection, MetaroomView, ChatroomsTemplate) {
+	function($, _, Backbone, ChatroomsCollection, MetaroomView, ChatroomsTemplate, Events) {
 		var ChatroomsView = Backbone.View.extend({
-//			el: '.ui-content', //'.curView',
-//			template: _.template('<h3>This is the chatroom index, listing all the chatrooms</h3>'),
 			template: _.template(ChatroomsTemplate),
 			initialize: function(options) {
 					this.collection = new ChatroomsCollection();
@@ -22,10 +21,13 @@ define([
 			},
 			render: function() {
 				this.$el.html( this.template() );
-//				this.$el.empty();
-//				this.$el.attr('data-role', 'listview')
-//					.attr('data-divider-theme', 'b')
-//					.attr('data-inset', 'true');
+				Events.trigger('changeheader', {
+						header: {
+								header_title: "Chatrooms",
+								right_button_class: "settings-btn",
+								left_button_class: "plus-btn"
+						}
+				});
 				this.collection.forEach(this.addOne, this);
 				return this;
 			},
