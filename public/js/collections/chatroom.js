@@ -23,7 +23,7 @@ define([
 					initialize: function(options) {
 							this.id = options.id || 0;
 							this.mainUrl = Api.baseUrl + "/api/chatroom/" + this.id;
-							this.fetch({ reset: true });
+//							this.fetch({ reset: true });
 					},
 					parse: function(response){
 							this.room_name = response.room_name;
@@ -31,7 +31,7 @@ define([
 							console.log("Timestamp: " + this.timestamp);
 							if (this.timestamp) {
 									this.url();
-									console.log(this.url);
+									//console.log(this.url);
 							}
 							this.num_msgs = response.num_msgs || 0;
 							if(response.id && response.id !== this.id)

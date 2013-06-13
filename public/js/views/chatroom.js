@@ -20,12 +20,16 @@ define([
 					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
 					'keypress textarea[type=text]': 'submitOnEnter',
+					'click div.photo-btn': 'update'
 			},
 			initialize: function(options) {
 					this.collection = new ChatroomCollection({ id: options.id });
-					this.collection.on('reset', this.render, this);
-					this.collection.on('add', this.addOne, this);
+					console.log(this.collection);
 					this.el = options.el || '.ui-content';
+					this.collection.fetch({ add: true, reset: true });
+//					this.collection.on('reset', this.render, this);
+					this.collection.on('add', this.addOne, this);
+					this.render();
 			},
 			render: function() {
 					console.log("Rendering chatroom");
@@ -37,11 +41,19 @@ define([
 							}
 					});
 					this.$el.html( this.template( { id: this.collection.id } ) );
+					this.delegateEvents( this.events );
 					this.collection.forEach(this.addOne, this);
 					return this;
 			},
 			addOne: function(message) {
 					console.log("Add one");
+					var attributes = message.attributes;
+					if (!(attributes && ((attributes.from && attributes.from !== "")
+												   	|| (attributes.body && attributes.body !== "")
+												   	|| attributes.timestamp ))) {
+							return;
+					}
+							
 					var messageView = new MessageView({ model: message });
 					this.$el.children().first().append(messageView.render().el);
 			},
@@ -52,9 +64,16 @@ define([
 			},
 			sendMessage: function(e) {
 					e.preventDefault();
-					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
-					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
-				    this.collection.fetch( { reset: false } );
+					this.collection.create( new MessageModel({ 'url': this.collection.mainUrl, 'from': 'me', 'body': $('textarea[name=body]').val() }), { wait: true } );
+					$('textarea[name=body]').val("");
+//					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
+//					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
+//				    this.collection.fetch( { reset: false } );
+			},
+			update: function(e) {
+					e.preventDefault();
+					console.log("Calling update");
+					this.collection.fetch( { add: true, remove: false } );
 			},
 		 	clean: function() {
 					this.collection.off(null, null, this);
