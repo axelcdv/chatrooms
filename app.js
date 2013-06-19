@@ -56,6 +56,11 @@ io.sockets.on('connection', function (socket) {
 				console.log(data);
 				socket.emit('my custom event', { data: 'custom event' });
 		});
+		socket.on('message', function( message ) {
+				console.log( message );
+				message.timestamp = (new Date()).getTime();
+				socket.broadcast.emit('message', message);
+		});
 });
 
 // Start server

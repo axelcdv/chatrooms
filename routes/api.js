@@ -8,13 +8,16 @@ var data = {
 	"chatrooms": [
 	{
 		"name": "chatroom 0",
+		"id": 0,
 		"messages": [
 		{
+			"room_id": 0,
 			"from": "Bob",
 			"body": "Hello, world!",
 			"timestamp": 1371070076262
 		},
 		{
+			"room_id": 0,
 			"from": "John",
 			"body": "Hi Bob!",
 			"timestamp": 1371070076362
@@ -23,18 +26,22 @@ var data = {
 	},
 	{
 		"name": "other chatroom",
+		"id": 1,
 		"messages": [
 		{
+			"room_id": 1,
 			"from": "batman",
 			"body": "I am the night",
 			"timestamp": 1371070076600
 		},
 		{
+			"room_id": 1,
 			"from": "Joker",
 			"body": "Its simple, we kill the batman",
 			"timestamp": 1371070079123
 		},
 		{
+			"room_id": 1,
 			"from": "Spiderman",
 			"body": "What the fuck am I doing here?",
 			"timestamp": 1371070081324

@@ -29,6 +29,15 @@ define([
 					this.collection.fetch({ add: true, reset: true });
 //					this.collection.on('reset', this.render, this);
 					this.collection.on('add', this.addOne, this);
+					
+					Events.on('message', function (message) {
+							console.log("Chatroom got message event, " + message.room_id);
+							console.log( message );
+							if ( message.room_id && message.room_id === this.collection.id ) {
+									this.collection.add( message );
+//									this.addOne( { attributes: message } );
+							}
+					}, this);
 					this.render();
 			},
 			render: function() {
@@ -66,6 +75,13 @@ define([
 					e.preventDefault();
 					this.collection.create( new MessageModel({ 'url': this.collection.mainUrl, 'from': 'me', 'body': $('textarea[name=body]').val() }), { wait: true } );
 					$('textarea[name=body]').val("");
+
+					// Test
+					Events.trigger('sendMessage', {
+							'from': 'socket',
+							'body': 'test socket message',
+							'room_id': this.collection.id,
+					});
 //					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
 //					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
 //				    this.collection.fetch( { reset: false } );
