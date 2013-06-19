@@ -73,15 +73,15 @@ define([
 			},
 			sendMessage: function(e) {
 					e.preventDefault();
-					this.collection.create( new MessageModel({ 'url': this.collection.mainUrl, 'from': 'me', 'body': $('textarea[name=body]').val() }), { wait: true } );
-					$('textarea[name=body]').val("");
+//					this.collection.create( new MessageModel({ 'url': this.collection.mainUrl, 'from': 'me', 'body': $('textarea[name=body]').val() }), { wait: true } );
 
 					// Test
 					Events.trigger('sendMessage', {
-							'from': 'socket',
-							'body': 'test socket message',
+							'from': Api.username,
+							'body': $('textarea[name=body]').val(), 
 							'room_id': this.collection.id,
 					});
+					$('textarea[name=body]').val("");
 //					var newMessage = new MessageModel({ 'url': Api.baseUrl + '/api/chatroom/' + this.collection.id });
 //					newMessage.save({ 'from': 'me', 'body': this.$('textarea[name=body]').val() });
 //				    this.collection.fetch( { reset: false } );

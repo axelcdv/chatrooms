@@ -5,9 +5,10 @@ define([
 	'underscore',
 	'backbone',
 	'models/message',
-	'text!templates/message.html'
+	'text!templates/message.html',
+	'api'
 	],
-	function($, _, Backbone, MessageModel, MessageTemplate)
+	function($, _, Backbone, MessageModel, MessageTemplate, Api)
 	{
 			var MessageView = Backbone.View.extend({
 					model: MessageModel,
@@ -18,7 +19,7 @@ define([
 //							+ '<span class="messageBody"><%= body %></span>'),
 					template: _.template(MessageTemplate),
 					render: function (){
-							if ( this.model.attributes.from === "me" ) { // Temporary
+							if ( this.model.attributes.from === Api.username ) { 
 									this.className = "message-right";
 									this.$el.removeClass('message-left')
 										.addClass('message-right');

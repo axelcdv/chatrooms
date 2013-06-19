@@ -58,8 +58,12 @@ io.sockets.on('connection', function (socket) {
 		});
 		socket.on('message', function( message ) {
 				console.log( message );
-				message.timestamp = (new Date()).getTime();
+				//message.timestamp = (new Date()).getTime();
+				message = api.processMessage(message);
+				console.log("Processed message");
+				console.log(message);
 				socket.broadcast.emit('message', message);
+				socket.emit('message', message);
 		});
 });
 

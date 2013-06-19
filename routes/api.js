@@ -146,8 +146,7 @@ exports.chatroomWithTime = function(req, res) {
 }
 
 // POST
-
-exports.postMessage = function(req, res) {
+var saveMessage = function ( req ) {
 	var room_id = req.params.room_id;
 
 	console.log('Posting message in room: ' + room_id
@@ -156,24 +155,50 @@ exports.postMessage = function(req, res) {
 
 	if (room_id && room_id >= 0 && room_id < data.chatrooms.length)
 	{
-		var chatroom = data.chatrooms[room_id];
+	var chatroom = data.chatrooms[room_id];
 		var timestamp = (new Date()).getTime();
 		chatroom.messages.push({ 
 			from: (req.body.from || ""),
 			body: (req.body.body || ""),
+			room_id: room_id,
 			timestamp: timestamp
 		});
 		var msg_id = chatroom.messages.length - 1;
-		res.json({
+		//res.json({
+		return {
 			id: msg_id,
+			room_id: chatroom.messages[msg_id].room_id,
 			from: chatroom.messages[msg_id].from,
 			body: chatroom.messages[msg_id].body,
 			timestamp: chatroom.messages[msg_id].timestamp
-		});
+		};
 	}
 	else
 	{
 		console.log('Incorrect chatroom id');
-		res.json(false);
+	//	res.json(false);
+		return false;
 	}
+}
+
+exports.processMessage = function(message) {
+		return saveMessage({
+				params: {
+						room_id: message.room_id,
+			   		},
+			   body: {
+					   from: message.from,
+			   			body: message.body
+			   }
+		});
+}
+
+exports.postMessage = function(req, res) {
+		var message = saveMessage(req);
+		if ( message ) {
+				res.json( message );
+		}
+		else {
+				res.json(false);
+		}
 }
