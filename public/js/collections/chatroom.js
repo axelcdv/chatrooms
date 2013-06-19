@@ -26,6 +26,8 @@ define([
 //							this.fetch({ reset: true });
 					},
 					parse: function(response){
+							console.log("Parsing response");
+							console.log(response);
 							this.room_name = response.room_name;
 							this.timestamp = response.timestamp;
 							console.log("Timestamp: " + this.timestamp);

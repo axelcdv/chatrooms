@@ -8,7 +8,8 @@ require.config({
 		backbone: 'libs/backbone/backbone-min',
 		text: 'libs/require/text',
 //	cordova: 'libs/cordova/cordova-2.7.0'
-		cordova: 'cordova-empty'
+		cordova: 'cordova-empty',
+		socketio: '/socket.io/socket.io'
 	},
 	shim: {
 		underscore: {
@@ -23,11 +24,15 @@ require.config({
 		},
 		app: {
 			deps: ['jquery', 'underscore', 'backbone', 'cordova', 'jqmobile']
+		},
+		socketio:
+		{
+				exports: 'io'
 		}
 	}
 });
 
-require(['views/app', 'router', 'vm'], function(AppView, Router, Vm) {
+require(['views/app', 'router', 'vm', 'socket'], function(AppView, Router, Vm, AppSocket) {
 //	document.addEventListener('deviceready', function () {
 //		App.initialize();
 		var appView = Vm.create({}, 'AppView', AppView);
@@ -36,6 +41,11 @@ require(['views/app', 'router', 'vm'], function(AppView, Router, Vm) {
 			Router.initialize({ appView: appView });
 //		});
 //	}, false);
+
+	AppSocket.addListener('my custom event', function(data) {
+			console.log("Received data from custom listener");
+			console.log(data);
+	});
 });
 
 

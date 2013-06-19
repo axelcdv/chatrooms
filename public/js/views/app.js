@@ -29,7 +29,7 @@ define([
 			},
 			setAttributes: function(attrs){
 					if (attrs.header) {
-							this.attributes.header.header_title = attrs.header.header_title || this.header_title;
+							this.attributes.header.header_title = attrs.header.header_title || this.attributes.header.header_title;
 							this.attributes.header.right_button_class = attrs.header.right_button_class 
 									|| this.attributes.header.right_button_class;
 							this.attributes.header.left_button_class = attrs.header.left_button_class 
@@ -41,6 +41,7 @@ define([
 		    contentTemplate: _.template(ContentTemplate),
 			initialize: function(options) {
 					Events.on('changeheader', function(header_attrs) {
+							console.log(header_attrs);
 							this.setAttributes (header_attrs);
 							this.changeHeader();
 					}, this);
