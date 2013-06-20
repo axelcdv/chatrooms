@@ -116,6 +116,8 @@ div#chatroomapp {
 .send-btn {
 		float: right;
 		text-align: center;
+		background: #ffb400 url('../img/send-icon.png') center center;
+		background-size: 100% 100%;
 }
 
 .send-btn h3 {
@@ -129,8 +131,8 @@ textarea#msg-body {
 		resize: none;
 		margin: 0;
 		height: 100%;
-		border-right: solid 1px black;
-		border-left: solid 1px black;
+		border-right: solid 0px black;
+		border-left: solid 0px black;
 		border-top: solid 1px black;
 		border-bottom: 0px;
 }

@@ -7,7 +7,7 @@ require.config({
 		underscore: 'libs/underscore/underscore-min',
 		backbone: 'libs/backbone/backbone-min',
 		text: 'libs/require/text',
-//	cordova: 'libs/cordova/cordova-2.7.0'
+//		cordova: 'libs/cordova/cordova-2.7.0',
 		cordova: 'cordova-empty',
 		socketio: '/socket.io/socket.io'
 	},
