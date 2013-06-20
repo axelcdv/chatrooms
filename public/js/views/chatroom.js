@@ -106,7 +106,7 @@ define([
 			},
 		 	clean: function() {
 					this.collection.off(null, null, this);
-					this.unDelegateEvents();
+					this.undelegateEvents();
 			}	
 		});
 
