@@ -20,15 +20,16 @@ define([
 					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
 					'keypress textarea[type=text]': 'submitOnEnter',
-					'click div.photo-btn': 'update'
+					'click div.photo-btn': 'update' // Test function, to be removed later
 			},
 			initialize: function(options) {
 					this.collection = new ChatroomCollection({ id: options.id });
 					console.log(this.collection);
 					this.el = options.el || '.ui-content';
-					this.collection.fetch({ add: true, reset: true });
+					this.collection.fetch({ reset: true });
 //					this.collection.on('reset', this.render, this);
-					this.collection.on('add', this.addOne, this);
+					this.collection.on('add', this.addOneScroll, this);
+					this.collection.on('reset', this.resetEvent, this);
 					
 					Events.on('message', function (message) {
 							console.log("Chatroom got message event, " + message.room_id);
@@ -38,7 +39,7 @@ define([
 //									this.addOne( { attributes: message } );
 							}
 					}, this);
-					this.render();
+					//this.render();
 			},
 			render: function() {
 					console.log("Rendering chatroom");
@@ -52,20 +53,28 @@ define([
 					this.$el.html( this.template( { id: this.collection.id } ) );
 					this.delegateEvents( this.events );
 					this.collection.forEach(this.addOne, this);
+					$("html, body").animate({ scrollTop: $(document).height() }, "slow",
+									function() { console.log("scrolled"); });
 					return this;
 			},
-			addOne: function(message) {
+			addOne: function(message) {  // TODO: really use 'reset' event upon entering chatroom
 					console.log("Add one");
 					var attributes = message.attributes;
 					if (!(attributes && ((attributes.from && attributes.from !== "")
 												   	|| (attributes.body && attributes.body !== "")
 												   	|| attributes.timestamp ))) {
-							return;
+								console.log("No attributes or empty field(s)");
+								return;
 					}
-							
 					var messageView = new MessageView({ model: message });
 					this.$el.children().first().append(messageView.render().el);
 			},
+			addOneScroll: function( message ) {
+					this.addOne( message );
+					$("html, body").animate({ scrollTop: $(document).height() }, "slow",
+									function() { console.log("scrolled"); });
+			},
+
 			submitOnEnter: function(e) {
 					if (e.keyCode != 13) return;
 					e.preventDefault();
@@ -91,8 +100,13 @@ define([
 					console.log("Calling update");
 					this.collection.fetch( { add: true, remove: false } );
 			},
+			resetEvent: function(e) {
+					console.log("Chatroom collection reset");
+					this.render();
+			},
 		 	clean: function() {
 					this.collection.off(null, null, this);
+					this.unDelegateEvents();
 			}	
 		});
 
