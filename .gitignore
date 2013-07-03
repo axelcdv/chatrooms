@@ -17,7 +17,6 @@ node_modules
 *.swp
 
 # Android-related files
-www
 # built application files
 *.apk
 *.ap_
