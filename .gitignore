@@ -48,7 +48,6 @@ proguard/
 .idea/
 
 
-backup
 # Xcode
 .DS_Store
 */build/*
@@ -66,6 +65,10 @@ profile
 DerivedData
 .idea/
 *.hmap
+xcshareddata
 
+# Custom
 www-abs
 toremove
+*.backup
+backup
