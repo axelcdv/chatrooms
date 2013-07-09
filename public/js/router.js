@@ -29,7 +29,7 @@ define([
 			router.on('route:chatroom', function(id) {
 				require(['views/chatroom'], function(ChatroomView) {
 					var chatroomView = Vm.create(appView, 'ChatroomView', ChatroomView, { id: id, el: '.ui-content' });
-					chatroomView.render();
+//					chatroomView.render();
 				});
 			});
 

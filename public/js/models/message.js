@@ -10,7 +10,7 @@ define([
 					defaults: {
 							from: "",
 							body: "",
-							profile_pic: "img/sloth2.jpg"
+							profile_pic: "img/sloth2.jpg",
 					},
 					initialize: function(options) {
 							this.url = options.url || "";

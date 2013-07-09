@@ -5,8 +5,9 @@ define([
 	],
 	function() {
 			var api = {
-				baseUrl: "http://localhost:3000"
-//				baseUrl: "http://home.axelcdv.com:3000"
+				username: "android",
+//				baseUrl: "http://localhost:3000"
+				baseUrl: "http://home.axelcdv.com:3000"
 			};
 
 			return api;
