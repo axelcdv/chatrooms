@@ -8,8 +8,9 @@ require.config({
 		backbone: 'libs/backbone/backbone-min',
 		text: 'libs/require/text',
 //		cordova: 'libs/cordova/cordova-2.7.0',
-		cordova: 'cordova-empty',
-		socketio: '/socket.io/socket.io'
+//		cordova: 'cordova-empty',
+		cordova: 'libs/cordova/cordova-ios',
+		socketio: 'http://home.axelcdv.com:3000/socket.io/socket.io'
 	},
 	shim: {
 		underscore: {
