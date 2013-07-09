@@ -9,9 +9,11 @@ define([
 		'models/message',
 		'text!templates/chatroom.html',
 		'events',
-		'api'
+		'api',
+		'utils/shake'
 	],
-	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Events, Api) {
+	function($, _, Backbone, ChatroomCollection, MessageView, MessageModel, ChatroomTemplate, Events, Api, Shake) {
+
 		var ChatroomView = Backbone.View.extend({
 			//el: '.ui-content',//'.curView',
 			template: _.template(ChatroomTemplate),
@@ -20,6 +22,7 @@ define([
 					'click div.send-btn': 'sendMessage',
 					'click button': 'sendMessage',
 					'keypress textarea[type=text]': 'submitOnEnter',
+					'click div.back-btn': 'back',
 					'click div.photo-btn': 'update' // Test function, to be removed later
 			},
 			initialize: function(options) {
@@ -39,6 +42,10 @@ define([
 //									this.addOne( { attributes: message } );
 							}
 					}, this);
+
+					Shake.startWatch( function() { alert("shaked"); } ); // Test function
+
+//					document.addEventListener('backbutton', back, false);
 					//this.render();
 			},
 			render: function() {
@@ -107,6 +114,10 @@ define([
 		 	clean: function() {
 					this.collection.off(null, null, this);
 					this.undelegateEvents();
+			},
+			back: function(e) {
+				e.preventDefault();
+				Events.trigger('navigate', '/');
 			}	
 		});
 

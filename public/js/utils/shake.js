@@ -1,0 +1,78 @@
+// js/views/chatroom.js
+
+define([
+		'jquery',
+		'cordova'
+		],
+		function( $, Cordova ) {
+				var restartTimemout = 1000,
+					shakeThreshold = 30;
+
+				var shake = (function() {
+						var shake = {},
+							watchId = null,
+							options = { frequency: 300 },
+							previousAcceleration = { x: null, y: null, z: null },
+							shakeCallBack = null;
+						
+						shake.startWatch = function( onShake ) {
+								console.log("Starting shake watch");
+								if (onShake !== null) {
+										shakeCallBack = onShake;
+								}
+								watchId = navigator.accelerometer.watchAcceleration(
+										getAccelerationSnapshot,
+										handleError,
+										options );
+						};
+
+						shake.stopWatch = function() {
+								if ( watchId !== null ) {
+										navigator.accelerometer.clearWatch(watchId);
+										watchId = null;
+								}
+						};
+
+						var getAccelerationSnapshot = function() {
+								navigator.accelerometer.getCurrentAcceleration(
+												assessCurrentAcceleration,
+												handleError );
+						};
+
+						var assessCurrentAcceleration = function( acceleration ) {
+								var accelerationChange = {};
+								if (previousAcceleration.x !== null) {
+										accelerationChange.x = Math.abs( acceleration.x - previousAcceleration.x );
+										accelerationChange.y = Math.abs( acceleration.y - previousAcceleration.y );
+										accelerationChange.z = Math.abs( acceleration.z - previousAcceleration.z );
+								}
+								if (accelerationChange.x + accelerationChange.y + accelerationChange.z > shakeThreshold) { // shake detected
+										if (typeof (shakeCallBack) === "function") {
+												shakeCallBack();
+										}
+										shake.stopWatch();
+										setTimeout( shake.startWatch, restartTimemout );
+										previousAcceleration = {
+												x: null,
+												y: null,
+												z: null
+										};
+								}
+								else {
+										previousAcceleration = {
+												x: acceleration.x,
+												y: acceleration.y,
+												z: acceleration.z
+										};
+								}
+						};
+
+						var handleError = function() {
+						};
+
+						return shake;
+				})();
+
+				return shake;
+		}
+);

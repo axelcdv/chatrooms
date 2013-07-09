@@ -33,6 +33,7 @@ api-webapp:
 main-webapp:
 	sed -i '' 's/[\/]*\(.*cordova-empty.*\)/\1/' public/js/main.js
 	sed -i '' 's/^\([^\/].*cordova-2.*\)/\/\/\1/' public/js/main.js
+	sed -i '' 's/^\([^\/].*cordova-ios.*\)/\/\/\1/' public/js/main.js
 	sed -i '' "s/http.*3000//" public/js/main.js
 
 main-ios:
