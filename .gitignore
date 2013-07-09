@@ -66,6 +66,7 @@ DerivedData
 .idea/
 *.hmap
 xcshareddata
+*.xcuserstate
 
 # Custom
 www-abs
