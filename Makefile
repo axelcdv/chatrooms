@@ -16,7 +16,7 @@ main-android:
 	sed -i '' 's/[\/]*\(.*cordova-2.*\)/\1/' public/js/main.js
 	sed -i '' 's/^\([^\/].*cordova-empty.*\)/\/\/\1/' public/js/main.js
 	sed -i '' 's/^\([^\/].*cordova-ios.*\)/\/\/\1/' public/js/main.js
-	sed -i '' "s/\'\(\/socket\.io\/socket\.io\)/\'http:\/\/home\.axelcdv\.com:3000\1/" public/js/main.js
+#	sed -i '' "s/\'\(\/socket\.io\/socket\.io\)/\'http:\/\/home\.axelcdv\.com:3000\1/" public/js/main.js
 
 run-android:
 	$(CORDOVA-ANDROID)run
@@ -40,7 +40,7 @@ main-ios:
 	sed -i '' 's/[\/]*\(.*cordova-ios.*\)/\1/' public/js/main.js
 	sed -i '' 's/^\([^\/].*cordova-2.*\)/\/\/\1/' public/js/main.js
 	sed -i '' 's/^\([^\/].*cordova-empty.*\)/\/\/\1/' public/js/main.js
-	sed -i '' "s/\'\(\/socket\.io\/socket\.io\)/\'http:\/\/home\.axelcdv\.com:3000\1/" public/js/main.js
+#	sed -i '' "s/\'\(\/socket\.io\/socket\.io\)/\'http:\/\/home\.axelcdv\.com:3000\1/" public/js/main.js
 
 
 api-ios:

@@ -10,7 +10,9 @@ require.config({
 //		cordova: 'libs/cordova/cordova-2.7.0',
 		cordova: 'cordova-empty',
 //		cordova: 'libs/cordova/cordova-ios',
-		socketio: '/socket.io/socket.io'
+//		socketio: '/socket.io/socket.io'
+//		socketio: 'libs/socket.io-client/socket.io-client'
+		socketio: 'libs/socket-client.io'
 	},
 	shim: {
 		underscore: {

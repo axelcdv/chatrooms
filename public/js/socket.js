@@ -1,10 +1,12 @@
 define([
 	'events',
+	//'libs/socket.io-client/socket.io-client'
 	'socketio',
 	'api'
 	],
 	function( Events, io, Api ) {
 					var socket = io.connect(Api.baseUrl);
+//					var socket = require(['socketio'])( Api.baseUrl);
 
 					socket.on('news', function(data) {
 							console.log( data );
