@@ -114,6 +114,7 @@ define([
 		 	clean: function() {
 					this.collection.off(null, null, this);
 					this.undelegateEvents();
+					Shake.stopWatch();
 			},
 			back: function(e) {
 				e.preventDefault();
