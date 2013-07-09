@@ -22,14 +22,14 @@ define([
 			var router = new AppRouter(options);
 			router.on('route:index', function () {
 				require(['views/chatrooms'], function(ChatroomsView) {
-					var chatroomsView = Vm.create(appView, 'ChatroomsView', ChatroomsView);
+					var chatroomsView = Vm.create(appView, 'ChatroomsView', ChatroomsView, { el: '.ui-content' });
 					chatroomsView.render();
 				});
 			});
 			router.on('route:chatroom', function(id) {
 				require(['views/chatroom'], function(ChatroomView) {
-					var chatroomView = Vm.create(appView, 'ChatroomView', ChatroomView, { id: id });
-					chatroomView.render();
+					var chatroomView = Vm.create(appView, 'ChatroomView', ChatroomView, { id: id, el: '.ui-content' });
+//					chatroomView.render();
 				});
 			});
 
@@ -38,7 +38,7 @@ define([
 					router.navigate(path, { trigger: true });
 			});
 
-			Backbone.history.start();
+			Backbone.history.start({ pushState: false });
 		};
 
 

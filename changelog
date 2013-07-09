@@ -1,0 +1,4 @@
+Changes so far:
+ - "naow" design
+ - socketio
+ - ios and android integration with corresponding makefile commmands

@@ -1,11 +1,16 @@
+'use strict';
+
 require.config({
 	paths:{
 		jquery: 'libs/jquery/jquery-min', 
+		jquerymobile: 'libs/jquery-mobile/jquery-mobile-min',
 		underscore: 'libs/underscore/underscore-min',
 		backbone: 'libs/backbone/backbone-min',
 		text: 'libs/require/text',
-//		cordova: 'libs/cordova/cordova-2.7.0'
-		cordova: 'cordova-empty'
+//		cordova: 'libs/cordova/cordova-2.7.0',
+//		cordova: 'cordova-empty',
+		cordova: 'libs/cordova/cordova-ios',
+		socketio: 'http://home.axelcdv.com:3000/socket.io/socket.io'
 	},
 	shim: {
 		underscore: {
@@ -19,18 +24,29 @@ require.config({
 			exports: 'cordova'
 		},
 		app: {
-			deps: ['jquery', 'underscore', 'backbone', 'cordova']
+			deps: ['jquery', 'underscore', 'backbone', 'cordova', 'jqmobile']
+		},
+		socketio:
+		{
+				exports: 'io'
 		}
 	}
 });
 
-require(['views/app', 'router', 'vm'], function(AppView, Router, Vm) {
+require(['views/app', 'router', 'vm', 'socket'], function(AppView, Router, Vm, AppSocket) {
 //	document.addEventListener('deviceready', function () {
 //		App.initialize();
 		var appView = Vm.create({}, 'AppView', AppView);
 		appView.render();
-		Router.initialize({ appView: appView });
+//		require( [ "jquerymobile" ], function() {
+			Router.initialize({ appView: appView });
+//		});
 //	}, false);
+
+	AppSocket.addListener('my custom event', function(data) {
+			console.log("Received data from custom listener");
+			console.log(data);
+	});
 });
 
 
