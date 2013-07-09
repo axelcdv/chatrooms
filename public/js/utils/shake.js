@@ -16,14 +16,16 @@ define([
 							shakeCallBack = null;
 						
 						shake.startWatch = function( onShake ) {
-								console.log("Starting shake watch");
-								if (onShake !== null) {
+								console.log("Starting shake watch, onShake: " + onShake);
+								if (onShake !== null && onShake) {
 										shakeCallBack = onShake;
 								}
 								watchId = navigator.accelerometer.watchAcceleration(
 										getAccelerationSnapshot,
 										handleError,
 										options );
+
+								console.log(shakeCallBack);
 						};
 
 						shake.stopWatch = function() {
@@ -47,6 +49,7 @@ define([
 										accelerationChange.z = Math.abs( acceleration.z - previousAcceleration.z );
 								}
 								if (accelerationChange.x + accelerationChange.y + accelerationChange.z > shakeThreshold) { // shake detected
+										console.log("Shaked");
 										if (typeof (shakeCallBack) === "function") {
 												shakeCallBack();
 										}
