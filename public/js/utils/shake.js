@@ -1,10 +1,22 @@
-// js/views/chatroom.js
+// js/utils/shake.js
 
 define([
 		'jquery',
 		'cordova'
 		],
 		function( $, Cordova ) {
+				if ( !Cordova ) {
+						return {
+								startWatch: function() {
+										console.log("Fake startWatch: no cordova");
+								},
+								stopWatch: function() {
+										console.log("Fake stopWatch: no cordova");
+								}
+						}
+				}
+
+
 				var restartTimemout = 1000,
 					shakeThreshold = 30;
 
