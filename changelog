@@ -1,4 +1,3 @@
 Changes so far:
- - "naow" design
- - socketio
- - ios and android integration with corresponding makefile commmands
+ - storage utility
+ - username is stored in localStorage (upon startup when debugging)

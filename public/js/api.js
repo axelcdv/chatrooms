@@ -5,6 +5,7 @@ define([
 	],
 	function() {
 			var api = {
+				debug: true,
 				username: "me",
 				baseUrl: "http://localhost:3000"
 //				baseUrl: "http://home.axelcdv.com:3000"

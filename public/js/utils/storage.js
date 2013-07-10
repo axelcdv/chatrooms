@@ -2,11 +2,16 @@
 
 define([
 		'jquery',
-		'cordova'
+		'cordova',
+		'api'
 		],
-		function( $, Cordova ) {
+		function( $, Cordova, Api ) {
 				var localStorage = window.localStorage;
 				var sessionStorage = window.sessionStorage;
+
+				if ( Api.debug ) {
+						localStorage.setItem("username", Api.username);
+				}
 
 				return {
 						local: localStorage,
