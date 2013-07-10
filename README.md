@@ -10,3 +10,9 @@ Changes:
   - Now using modular architecture with requireJS
   - Proto-layout using jquery-mobile css (js not integrated yet)
   - Added Api module to easily switch between environments (dev, prod, other server, phonegap...)
+
+v0.14:
+Changes:
+ - "Naow" design (at least for chatroom view)
+ - Socket.io to send/receive messages
+ - ios and android integration with corresponding makefile commands
